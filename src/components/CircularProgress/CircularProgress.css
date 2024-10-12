@@ -1,0 +1,38 @@
+.circular-progress-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.circular-progress-svg {
+    transform: rotate(-90deg);
+}
+
+.circular-progress-bg {
+    stroke: #EEF7FB;
+    fill: none;
+}
+
+.circular-progress-bar {
+    stroke: #AADDF3;
+    fill: none;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.circular-progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+.circular-progress-text p {
+    font-family: 'Proxima Nova', sans-serif;
+    color: #1C2635;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 20px;
+}

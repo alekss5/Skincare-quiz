@@ -1,0 +1,53 @@
+[
+    {
+      "question": "What's your hair type or texture?",
+      "options": [
+        { "label": "Straight", "value": "type_straight" },
+        { "label": "Curly", "value": "type_curly" },
+        { "label": "Wavy", "value": "type_wavy" },
+        { "label": "Fine", "value": "type_fine" }
+      ]
+    },
+    {
+      "question": "How often do you wash your hair?",
+      "options": [
+        { "label": "Daily", "value": "daily" },
+        { "label": "Every other day", "value": "every_other_day" },
+        { "label": "Twice a week", "value": "twice_a_week" },
+        { "label": "Once a week", "value": "once_a_week" },
+        { "label": "Once every two weeks", "value": "every_two_weeks" }
+      ]
+    },
+    {
+      "question": "What benefit do you look for in your hair products?",
+      "options": [
+        { "label": "Anti-breakage", "value": "goals_anti_breakage" },
+        { "label": "Hydration", "value": "goals_hydrate" },
+        { "label": "Soothing dry scalp", "value": "goals_soothing" },
+        { "label": "Repairs the appearance of damaged hair", "value": "goals_repair" },
+        { "label": "Volume", "value": "goals_volume" },
+        { "label": "Curl and coil enhancing", "value": "goals_curl_enhancing" }
+      ]
+    },
+    {
+      "question": "Is there anything troubling you about your hair?",
+      "options": [
+        { "label": "Breakage", "value": "breakage" },
+        { "label": "Frizz", "value": "frizz" },
+        { "label": "Scalp dryness", "value": "scalp_dryness" },
+        { "label": "Damage", "value": "damage" },
+        { "label": "Tangling", "value": "tangling" }
+      ]
+    },
+    {
+      "question": "What is your natural hair color(s) today?",
+      "options": [
+        { "label": "Black", "value": "type_black" },
+        { "label": "Brown", "value": "type_brown" },
+        { "label": "Blonde", "value": "type_blonde" },
+        { "label": "Red/Orange", "value": "type_red" },
+        { "label": "Silver/Grey", "value": "type_grey" }
+      ]
+    }
+  ]
+  

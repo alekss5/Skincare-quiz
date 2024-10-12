@@ -1,0 +1,17 @@
+.image-container {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .container-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    justify-content: center;
+    height: 55vh;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  
