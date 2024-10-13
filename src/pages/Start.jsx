@@ -10,12 +10,7 @@ import CenterWrapper from '../components/CenterWrapper';
 const Start = () => {
   const navigate = useNavigate()
 
-  const startQuiz = () => {
-    navigate('/question/0')
-  }
-
   return (
-
     <BackgrondContainer backgroundImagePath={HomeImage}>
       <CenterWrapper>
         <Title style={{ color: '#FFFFFF'}}>Build a self care routine <br/>suitable for you</Title>
@@ -23,7 +18,7 @@ const Start = () => {
           Take out test to get a personalised self care<br></br> routine based on your needs.
         </Subtext>
       </CenterWrapper>
-      <SubmitButton onClick={startQuiz} >Start the quiz</SubmitButton>
+      <SubmitButton onClick={() => {navigate('/question/0')}} >Start the quiz</SubmitButton>
     </BackgrondContainer>
   );
 };

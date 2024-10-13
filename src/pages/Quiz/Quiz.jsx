@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SubmitButton from '../../components/SubmitButton';
 import CircularProgress from '../../components/CircularProgress';
@@ -11,7 +11,7 @@ import './Quiz.css';
 
 const Quiz = () => {
   const { id } = useParams();
-  const questionId = parseInt(id);
+  const questionId = useMemo(() => parseInt(id), [id]); 
   const navigate = useNavigate();
 
   const [answers, setAnswers] = useState(() => {
@@ -20,50 +20,56 @@ const Quiz = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('quizAnswers', JSON.stringify(answers));
+    const timeoutId = setTimeout(() => {
+      localStorage.setItem('quizAnswers', JSON.stringify(answers));
+    }, 300); // Debounce writing to localStorage
+    return () => clearTimeout(timeoutId);
   }, [answers]);
 
   const handleAnswer = (answerValue) => {
-    setAnswers({ ...answers, [questionId]: answerValue });
+    setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answerValue }));
   };
 
   const handleNext = () => {
-    if (!answers[questionId]) {
-      return;
-    }
+    if (!answers[questionId]) return; // Prevent moving to next if no answer selected
 
     if (questionId < quizQuestions.length - 1) {
       navigate(`/question/${questionId + 1}`);
     } else {
       navigate('/results', { state: { answers } });
-      localStorage.removeItem('quizAnswers');
+      localStorage.removeItem('quizAnswers'); // Clear answers on completion
     }
   };
 
   const handleBack = () => {
-    if (questionId > 0) {
-      navigate(`/question/${questionId - 1}`);
-    }
+    if (questionId > 0) navigate(`/question/${questionId - 1}`);
   };
+
+  // Memoize current question to avoid unnecessary re-renders
+  const currentQuestion = useMemo(() => quizQuestions[questionId], [questionId]);
 
   return (
     <div className="container">
       <div className="quiz-wrapper">
         <div className="header-container">
-          <Title style={{
-            color: '#1C2635', 
-            fontSize: '40px',
-            fontWeight: 500,
-            lineHeight: '44px',
-          }}>{quizQuestions[questionId].question}</Title>
+          <Title
+            style={{
+              color: '#1C2635',
+              fontSize: '40px',
+              fontWeight: 500,
+              lineHeight: '44px',
+            }}
+          >
+            {currentQuestion.question}
+          </Title>
         </div>
 
         <div className="options">
-          {quizQuestions[questionId].options.map((option, index) => {
+          {currentQuestion.options.map((option, index) => {
             const letter = String.fromCharCode(97 + index);
             return (
               <OptionButton
-                key={index}
+                key={option.value}
                 isSelected={answers[questionId] === option.value}
                 onClick={() => handleAnswer(option.value)}
               >
@@ -73,10 +79,17 @@ const Quiz = () => {
           })}
         </div>
 
-        <div>
+        <div className="navigation-buttons">
           <BackButton handleBack={handleBack}>Back</BackButton>
           <SubmitButton onClick={handleNext}>
-            {quizQuestions.length === questionId + 1 ? "Discover your results" : <>Next question<img src={ArrowRight} alt='' style={{ marginLeft: '10px' }}/></>}
+            {questionId === quizQuestions.length - 1
+              ? 'Discover your results'
+              : (
+                <>
+                  Next question
+                  <img src={ArrowRight} alt="Next" style={{ marginLeft: '10px' }} />
+                </>
+              )}
           </SubmitButton>
         </div>
       </div>

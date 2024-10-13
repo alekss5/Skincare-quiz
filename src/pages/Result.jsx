@@ -10,8 +10,8 @@ import ProductSlider from '../components/ProductSlider';
 
 const InformationCarText = {
   title: 'Daily routine',
-  text: "Perfect for if you're looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances you can add a moment of calm to the end of your day.",
-}
+  text: "Perfect for if you're looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances, you can add a moment of calm to the end of your day.",
+};
 
 const Result = () => {
   const location = useLocation();
@@ -26,36 +26,30 @@ const Result = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://jeval.com.au/collections/hair-care/products.json?page=1')
-      .then(response => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://jeval.com.au/collections/hair-care/products.json?page=1');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-        return response.json();
-      })
-      .then(data => {
-        const answerArray = Object.values(answers).map(a => a.toLowerCase());
 
-        let filteredProducts = [];
-        if (answerArray.length > 0) {
-          filteredProducts = data.products.filter(product => {
-            const productTitle = product.title.toLowerCase();
-            const productDescription = product.body_html.toLowerCase();
-            const productTags = product.tags.map(tag => tag.toLowerCase());
+        const data = await response.json();
+        const answerArray = Object.values(answers || {}).map(a => a.toLowerCase());
 
-            return answerArray.some(keyword =>
-              productTitle.includes(keyword) ||
-              productDescription.includes(keyword) ||
-              productTags.some(tag => tag.includes(keyword))
-            );
-          });
-        }
+        let filteredProducts = data.products.filter(product => {
+          const productTitle = product.title.toLowerCase();
+          const productDescription = product.body_html.toLowerCase();
+          const productTags = product.tags.map(tag => tag.toLowerCase());
 
-        let allProducts = data.products;
+          return answerArray.some(keyword =>
+            productTitle.includes(keyword) ||
+            productDescription.includes(keyword) ||
+            productTags.some(tag => tag.includes(keyword))
+          );
+        });
 
-        //adding more products if there is no enough products
         if (filteredProducts.length < 8) {
-          const additionalProducts = allProducts.filter(product =>
+          const additionalProducts = data.products.filter(product =>
             !filteredProducts.some(filtered => filtered.id === product.id)
           ).slice(0, 8 - filteredProducts.length);
           filteredProducts = [...filteredProducts, ...additionalProducts];
@@ -68,24 +62,20 @@ const Result = () => {
         });
 
         setProducts(sortedProducts);
-      })
-      .catch(error => {
-        console.error('Error fetching:', error);
+      } catch (error) {
         setError('Failed to load products. Please try again later.');
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
-  }, [answers]); //add and wishlist and the changes for favorite will be applied immediately
+      }
+    };
+
+    fetchProducts();
+  }, [answers, wishlist]);
 
   const handleWishlistToggle = (productId) => {
-    let updatedWishlist;
-
-    if (wishlist.includes(productId)) {
-      updatedWishlist = wishlist.filter(id => id !== productId);
-    } else {
-      updatedWishlist = [...wishlist, productId];
-    }
+    const updatedWishlist = wishlist.includes(productId)
+      ? wishlist.filter(id => id !== productId)
+      : [...wishlist, productId];
 
     setWishlist(updatedWishlist);
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
@@ -96,7 +86,7 @@ const Result = () => {
   };
 
   if (error) {
-    return <div>{error}</div>;
+    return <div style={{ textAlign: 'center' }}>{error}</div>;
   }
 
   return (
@@ -105,16 +95,30 @@ const Result = () => {
         <CenterWrapper style={{ marginTop: '-100px' }}>
           <Title>Build your everyday self care routine.</Title>
           <Subtext style={{ lineHeight: "24px" }}>
-            Perfect for if you're looking for soft, nourished skin, our moisturizing body <br />washes are made with skin-natural nutrients that work with your skin to <br />replenish moisture. With a light formula, the bubbly lather leaves your skin <br />feeling cleansed and cared for. And by choosing relaxing fragrances you can <br />add a moment of calm to the end of your day.
+            Perfect for if you're looking for soft, nourished skin, our moisturizing body <br />
+            washes are made with skin-natural nutrients that work with your skin to <br />
+            replenish moisture. With a light formula, the bubbly lather leaves your skin <br />
+            feeling cleansed and cared for. And by choosing relaxing fragrances you can <br />
+            add a moment of calm to the end of your day.
           </Subtext>
         </CenterWrapper>
         <SubmitButton onClick={retakeQuiz} style={{ backgroundColor: 'transparent', border: "1px solid white", width: '238px' }} fontStyle={{ color: 'white' }}>
           Retake the quiz
         </SubmitButton>
       </BackgroundContainer>
-      {loading ? <div style={{ textAlign: 'center' }}>Loading products...</div> : <div className="product-slider" style={{ marginLeft: '1vw', width: '98vw', alignSelf: 'center', display: 'flex', justifyContent: 'center' }}>
-        <ProductSlider products={products} handleWishlistToggle={handleWishlistToggle} wishlist={wishlist} informationCarText={InformationCarText} />
-      </div>}
+
+      {loading ? (
+        <div style={{ textAlign: 'center' }}>Loading products...</div>
+      ) : (
+        <div className="product-slider" style={{ marginLeft: '1vw', width: '98vw', display: 'flex', justifyContent: 'center' }}>
+          <ProductSlider
+            products={products}
+            handleWishlistToggle={handleWishlistToggle}
+            wishlist={wishlist}
+            informationCarText={InformationCarText}
+          />
+        </div>
+      )}
     </div>
   );
 };
