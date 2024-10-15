@@ -70,7 +70,7 @@ const Result = () => {
     };
 
     fetchProducts();
-  }, [answers, wishlist]);
+  }, [answers]);
 
   const handleWishlistToggle = (productId) => {
     const updatedWishlist = wishlist.includes(productId)

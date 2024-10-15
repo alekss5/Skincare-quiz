@@ -22,7 +22,7 @@ const Quiz = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       localStorage.setItem('quizAnswers', JSON.stringify(answers));
-    }, 300); // Debounce writing to localStorage
+    }, 300);
     return () => clearTimeout(timeoutId);
   }, [answers]);
 
@@ -31,13 +31,13 @@ const Quiz = () => {
   };
 
   const handleNext = () => {
-    if (!answers[questionId]) return; // Prevent moving to next if no answer selected
+    if (!answers[questionId]) return;
 
     if (questionId < quizQuestions.length - 1) {
       navigate(`/question/${questionId + 1}`);
     } else {
       navigate('/results', { state: { answers } });
-      localStorage.removeItem('quizAnswers'); // Clear answers on completion
+      localStorage.removeItem('quizAnswers');
     }
   };
 
@@ -45,7 +45,6 @@ const Quiz = () => {
     if (questionId > 0) navigate(`/question/${questionId - 1}`);
   };
 
-  // Memoize current question to avoid unnecessary re-renders
   const currentQuestion = useMemo(() => quizQuestions[questionId], [questionId]);
 
   return (
