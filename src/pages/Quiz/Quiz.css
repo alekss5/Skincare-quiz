@@ -20,7 +20,23 @@
     left: 80vw;
     top: 25vh;
   }
-  
+
+@media (max-width: 768px) {
+    .progress-wrapper {
+        left: 50vw;
+        top: 10vh;
+        transform: translate(-50%, -50%); 
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-wrapper {
+        left: 50vw;
+        top: 10vh;
+        transform: translate(-50%, -50%);
+    }
+}
+
   .header-container {
     width: 470px;
     height: 88px;

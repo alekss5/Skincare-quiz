@@ -3,34 +3,21 @@ import ProductCard from '../ProductCard/ProductCard';
 import Slider from 'react-slick'; 
 import './ProductSlider.css';
 import Next from'../../assets/svg.svg'
-import InformationCard from '../InformationCard';
+import InformationCard from '../InformationCard/InformationCard';
 
 const ProductSlider = ({ products, handleWishlistToggle, wishlist, informationCarText}) => {
     const NextArrow = ({ onClick }) => {
         return (
           <div
-            style={{
-              display: 'block',
-              background: '#EEF7FB',
-              color: 'white',
-              borderRadius: '50%',
-              right: '-50px',
-              position: 'absolute',
-              top: '50%',
-              cursor: 'pointer',
-              fontSize: '30px',
-         
-              width: '60px',
-              height: '60px',
-              textAlign: 'center',
-            
-            }}
+
+            className='nextButton'
             onClick={onClick}
           >
          <img src={Next} style={{width:'16px',height:'16px',marginTop:'22px',backgroundColor:'#EEF7FB' }} alt='Next'/>
           </div>
         );
       };
+     
     const settings = {
         dots: true,
         infinite: true,
@@ -38,9 +25,10 @@ const ProductSlider = ({ products, handleWishlistToggle, wishlist, informationCa
         slidesToShow: 3,
         slidesToScroll: 3, 
         nextArrow: <NextArrow />, 
+        
         responsive: [
           {
-            breakpoint: 1024,
+            breakpoint: 1360,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2,
@@ -48,11 +36,11 @@ const ProductSlider = ({ products, handleWishlistToggle, wishlist, informationCa
             },
           },
           {
-            breakpoint: 600,
+            breakpoint: 945,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
             },
           },
         ],
@@ -60,7 +48,7 @@ const ProductSlider = ({ products, handleWishlistToggle, wishlist, informationCa
   
     return (
     
-        <Slider {...settings} style={{width:'65vw',paddingLeft:'10px',marginTop:'-100px'}}>
+        <Slider {...settings} className="slider" >
              <InformationCard title={informationCarText.title} text={informationCarText.text}/>
         {products.map(product => (
                 <ProductCard key={product.id} product={product} handleWishlistToggle={handleWishlistToggle} wishlist={wishlist} />

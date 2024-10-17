@@ -1,5 +1,5 @@
 .card-wrapper {
-    width: 350px;
+    width: 95%;
     height: 420px;
     padding-bottom: 70px;
   }
@@ -49,3 +49,29 @@
     margin: 0;
   }
   
+  @media (max-width: 768px) {
+    .card-wrapper {
+      width: 100%; 
+      padding-bottom: 60px;
+  }
+
+  .product-title {
+    font-size: 20px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+}
+  @media (max-width: 480px) {
+    .card-wrapper {
+      width: 95%; 
+        padding-bottom: 80px;
+    }
+      .product-image {
+      width: 85%;
+      height: 305px;
+      margin-left: 20px;
+    }
+
+}

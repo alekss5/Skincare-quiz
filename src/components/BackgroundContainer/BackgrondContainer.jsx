@@ -9,7 +9,10 @@ const BackgroundContainer = ({ backgroundImagePath, children }) => {
   return (
     <div className="image-container" style={imageContainerStyle}>
       <div className="container-style">
+        <div className='content-container'>
         {children}
+        </div>
+   
       </div>
     </div>
   );

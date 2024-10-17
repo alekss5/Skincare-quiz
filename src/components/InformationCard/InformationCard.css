@@ -1,0 +1,15 @@
+.informationCard{
+    max-width: 280px;
+    width: 85vw;
+    border-radius: 8px;
+    background-color: #EEF7FB;
+    padding: 35px;
+}
+@media (max-width: 480px) {
+    .informationCard{
+        width: 65vw;
+        padding-bottom: 80px;
+    }
+   
+
+}

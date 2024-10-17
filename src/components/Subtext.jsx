@@ -9,9 +9,9 @@ const Subtext = ({ children,style }) => {
     lineHeight: "16px",
     textAlign: "center",
     color: '#FFFFFF',
-   
     height: "auto", 
     margin: "0 0 24px 0",
+  
     ...style
   };
 
