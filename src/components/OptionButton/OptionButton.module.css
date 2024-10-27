@@ -1,7 +1,7 @@
 .optionButton {
     min-width: 189px;
-    max-width: 290px;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 14px 20px;
     margin-bottom: 10px;
     border: 1px solid #5BC1ED;

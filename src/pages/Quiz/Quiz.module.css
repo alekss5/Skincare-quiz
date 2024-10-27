@@ -36,7 +36,7 @@
 
   .progressWrapper {
     left: 50vw;
-    top: 10vh;
+    top: 5rem;
     transform: translate(-50%, -50%);
   }
 }
