@@ -4,7 +4,8 @@ import BackgrondContainer from '../components/BackgroundContainer';
 import { useNavigate } from 'react-router-dom';
 import SubmitButton from '../components/SubmitButton';
 import Title from '../components/Title';
-import Subtext from '../components/Subtext';
+
+import Text from '../components/Text';
 import CenterWrapper from '../components/CenterWrapper';
 
 const Start = () => {
@@ -13,12 +14,12 @@ const Start = () => {
   return (
     <BackgrondContainer backgroundImagePath={HomeImage}>
       <CenterWrapper>
-        <Title style={{ color: '#FFFFFF'}}>Build a self care routine <br/>suitable for you</Title>
-        <Subtext>
-          Take out test to get a personalised self care<br></br> routine based on your needs.
-        </Subtext>
+        <Title style={{color :'#FFFFFF'}}>Build a self care routine suitable for you</Title>
+        <Text style={{color :'#FFFFFF'}}>
+          Take out test to get a personalised self care routine based on your needs.
+        </Text>
       </CenterWrapper>
-      <SubmitButton onClick={() => {navigate('/question/0')}} >Start the quiz</SubmitButton>
+      <SubmitButton onClick={() => {navigate('/question/0')}} text='Start the quiz'/>
     </BackgrondContainer>
   );
 };

@@ -1,0 +1,11 @@
+.text {
+    font-family: 'Proxima Nova';
+    max-width: 327px;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    margin: 0 0 24px 0;
+    line-height: 16px;
+    text-align: center;
+
+  }

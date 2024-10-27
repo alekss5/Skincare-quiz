@@ -1,18 +1,19 @@
 import React from 'react';
-import './BackgroundContainer.css';
+import styles from './BackgroundContainer.module.css';
 
 const BackgroundContainer = ({ backgroundImagePath, children }) => {
+  
   const imageContainerStyle = {
+ 
     backgroundImage: `url(${backgroundImagePath})`,
   };
 
   return (
-    <div className="image-container" style={imageContainerStyle}>
-      <div className="container-style">
-        <div className='content-container'>
+    <div className={styles.imageContainer} style={imageContainerStyle}>
+      <div className={styles.containerStyle}>
+        <div className={styles.contentContainer}>
         {children}
         </div>
-   
       </div>
     </div>
   );

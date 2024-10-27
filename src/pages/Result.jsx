@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import BackgroundContainer from '../components/BackgroundContainer';
 import Title from '../components/Title';
-import Subtext from '../components/Subtext';
+import Text from '../components/Text';
 import ResultImage from '../assets/Rectangle2-2.png';
 import SubmitButton from '../components/SubmitButton';
 import CenterWrapper from '../components/CenterWrapper';
@@ -92,19 +92,17 @@ const Result = () => {
   return (
     <div className="results-page">
       <BackgroundContainer backgroundImagePath={ResultImage}>
-        <CenterWrapper style={{ marginTop: '-100px' }}>
-          <Title>Build your everyday self care routine.</Title>
-          <Subtext style={{ lineHeight: "24px" }}>
-            Perfect for if you're looking for soft, nourished skin, our moisturizing body 
-            washes are made with skin-natural nutrients that work with your skin to 
-            replenish moisture. With a light formula, the bubbly lather leaves your skin 
-            feeling cleansed and cared for. And by choosing relaxing fragrances you can 
+        <CenterWrapper style={{ marginTop: '-6.25rem' }}>
+          <Title style={{maxWidth:'563px'}}>Build your everyday self care routine.</Title>
+          <Text style={{ lineHeight: "24px", color: '#FFFFFF', maxWidth: '563px' }}>
+            Perfect for if you're looking for soft, nourished skin, our moisturizing body
+            washes are made with skin-natural nutrients that work with your skin to
+            replenish moisture. With a light formula, the bubbly lather leaves your skin
+            feeling cleansed and cared for. And by choosing relaxing fragrances you can
             add a moment of calm to the end of your day.
-          </Subtext>
+          </Text>
         </CenterWrapper>
-        <SubmitButton onClick={retakeQuiz} style={{ backgroundColor: 'transparent', border: "1px solid white", width: '238px' }} fontStyle={{ color: 'white' }}>
-          Retake the quiz
-        </SubmitButton>
+        <SubmitButton text='Retake the quiz' onClick={retakeQuiz} style={{ backgroundColor: 'transparent', border: "1px solid white", width: '238px',marginTop:'15px' }} fontStyle={{ color: 'white' }}/>
       </BackgroundContainer>
 
       {loading ? (

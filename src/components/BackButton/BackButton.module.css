@@ -1,0 +1,7 @@
+.back-button {
+    margin-right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}

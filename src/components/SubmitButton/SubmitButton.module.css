@@ -1,3 +1,4 @@
+
 .submit-button {
     padding: 14px 35px;
     height: 47px;
@@ -10,11 +11,3 @@
     cursor: pointer;
 }
 
-.submit-button-text {
-    font-family: 'Proxima Nova', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    color: #1C2635;
-    margin: 0;
-}

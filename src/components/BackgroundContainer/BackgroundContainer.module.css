@@ -1,10 +1,10 @@
-.image-container {
+.imageContainer {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.container-style {
+.containerStyle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
   background: rgba(0, 0, 0, 0.35);
 }
 
-.content-container {
+.contentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,23 +25,21 @@
 }
 
 @media (max-width: 768px) {
-  .container-style {
+  .containerStyle {
     height: 60vh; 
   }
 
-  .content-container {
-    width: 90%;
+  .contentContainer {
     padding: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .container-style {
+  .containerStyle {
     height: 70vh;
   }
 
-  .content-container {
-    width: 95%;
+  .contentContainer {
     padding: 20px;
   }
 }

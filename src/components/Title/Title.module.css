@@ -1,0 +1,15 @@
+.title {
+  font-family: 'Grange';
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 44px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 36px;
+  }
+}

@@ -1,25 +1,25 @@
-.circular-progress-container {
+.circularProgressContainer {
     position: relative;
     width: 120px;
     height: 120px;
 }
 
-.circular-progress-svg {
+.circularProgressSvg {
     transform: rotate(-90deg);
 }
 
-.circular-progress-bg {
+.circularProgressBg {
     stroke: #EEF7FB;
     fill: none;
 }
 
-.circular-progress-bar {
+.circularProgressBar {
     stroke: #AADDF3;
     fill: none;
     transition: stroke-dashoffset 0.5s ease;
 }
 
-.circular-progress-text {
+.circularProgressText {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,7 +29,7 @@
     text-align: center;
 }
 
-.circular-progress-text p {
+.circularProgressText p {
     font-family: 'Proxima Nova', sans-serif;
     color: #1C2635;
     font-weight: 300;

@@ -1,0 +1,27 @@
+.informationCard {
+    max-width: 265px;
+    width: 85vw;
+    border-radius: 8px;
+    background-color: #EEF7FB;
+    padding: 40px;
+}
+
+.informationText {
+    font-size: 20px;
+     line-height: 24px;
+      text-align: left;
+}
+
+@media (max-width: 480px) {
+    .informationCard {
+        height: 305px;
+        width: 70%;
+        padding-bottom: 80px;
+    }
+
+    .informationText {
+ 
+        font-size: 17px;
+    }
+
+}

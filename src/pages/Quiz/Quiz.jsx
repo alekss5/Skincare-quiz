@@ -2,16 +2,16 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SubmitButton from '../../components/SubmitButton';
 import CircularProgress from '../../components/CircularProgress';
-import ArrowRight from '../../assets/arrow-right.svg';
-import BackButton from '../../components/BackButton';
-import OptionButton from '../../components/OptionButton';
+import BackButton from '../../components/BackButton/BackButton';
+import OptionButton from '../../components/OptionButton/OptionButton';
 import quizQuestions from './quizQuestions.json';
-import Title from '../../components/Title';
-import './Quiz.css';
+import Title from '../../components/Title/Title';
+import ArrowRight from '../../assets/arrow-right.svg';
+import styles from './Quiz.module.css';
 
 const Quiz = () => {
   const { id } = useParams();
-  const questionId = useMemo(() => parseInt(id), [id]); 
+  const questionId = useMemo(() => parseInt(id), [id]);
   const navigate = useNavigate();
 
   const [answers, setAnswers] = useState(() => {
@@ -47,23 +47,17 @@ const Quiz = () => {
 
   const currentQuestion = useMemo(() => quizQuestions[questionId], [questionId]);
 
+  const isLastQuestion = questionId !== quizQuestions.length - 1
   return (
-    <div className="container">
-      <div className="quiz-wrapper">
-        <div className="header-container">
-          <Title
-            style={{
-              color: '#1C2635',
-              fontSize: '40px',
-              fontWeight: 500,
-              lineHeight: '44px',
-            }}
-          >
+    <div className={styles.container}>
+      <div className={styles.quizWrapper}>
+        <div className={styles.headerContainer}>
+          <Title style={{ color: '#1C2635', fontSize: '40px', fontWeight: '500', lineHeight: '44px' }}>
             {currentQuestion.question}
           </Title>
         </div>
 
-        <div className="options">
+        <div className={styles.options}>
           {currentQuestion.options.map((option, index) => {
             const letter = String.fromCharCode(97 + index);
             return (
@@ -78,23 +72,16 @@ const Quiz = () => {
           })}
         </div>
 
-        <div className="navigation-buttons">
+        <div className={styles.navigationButtons}>
           <BackButton handleBack={handleBack}>Back</BackButton>
-          <SubmitButton onClick={handleNext}>
-            {questionId === quizQuestions.length - 1
-              ? 'Discover your results'
-              : (
-                <>
-                  Next question
-                  <img src={ArrowRight} alt="Next" style={{ marginLeft: '10px' }} />
-                </>
-              )}
+          <SubmitButton onClick={handleNext} text={isLastQuestion ?'Next question': 'Discover your results' }>
+            {isLastQuestion && <img src={ArrowRight} alt="Next" style={{ marginLeft: '10px' }} />}
           </SubmitButton>
         </div>
       </div>
 
-      <div className="progress-wrapper">
-        <CircularProgress questionId={questionId} totalQuestions={quizQuestions.length} />
+      <div className={styles.progressWrapper}>
+        <CircularProgress questionNumber={questionId + 1} totalQuestions={quizQuestions.length} />
       </div>
     </div>
   );

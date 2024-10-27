@@ -1,0 +1,15 @@
+.optionButton {
+    min-width: 189px;
+    max-width: 290px;
+    margin-left: 10px;
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #5BC1ED;
+    border-radius: 8px;
+    background-color: white;
+    color: #1C2635;
+  }
+  
+  .selected {
+    background-color: #5BC1ED;
+  }

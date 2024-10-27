@@ -1,35 +1,35 @@
 import React from 'react';
-import './CircularProgress.css';
+import styles from './CircularProgress.module.css';
 
-const CircularProgress = ({ questionId, totalQuestions }) => {
+const CircularProgress = ({ questionNumber, totalQuestions }) => {
     const radius = 45;
     const strokeWidth = 6;
     const circumference = 2 * Math.PI * radius;
-    const progress = ((questionId + 1) / totalQuestions) * 100;
+    const progress = (questionNumber / totalQuestions) * 100;
     const offset = circumference - (progress / 100) * circumference;
 
     return (
-        <div className="circular-progress-container">
-            <svg className="circular-progress-svg" width="120" height="120" viewBox="0 0 120 120">
+        <div className={styles.circularProgressContainer}>
+            <svg className={styles.circularProgressSvg} width="120" height="120" viewBox="0 0 120 120">
                 <circle
                     cx="60"
                     cy="60"
                     r={radius}
-                    className="circular-progress-bg"
+                    className={styles.circularProgressBg}
                     strokeWidth={strokeWidth}
                 />
                 <circle
                     cx="60"
                     cy="60"
                     r={radius}
-                    className="circular-progress-bar"
+                    className={styles.circularProgressBar}
                     strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
                 />
             </svg>
-            <div className="circular-progress-text">
-                <p>{`${questionId + 1}/${totalQuestions}`}</p>
+            <div className={styles.circularProgressText}>
+                <p>{`${questionNumber}/${totalQuestions}`}</p>
             </div>
         </div>
     );

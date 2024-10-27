@@ -1,14 +1,14 @@
 import React from 'react'
-import './InformationCard.css'
+import style from './InformationCard.module.css'
+import Title from '../Title'
+import Text from '../Text'
 function InformationCard({ title, text }) {
     return (
-        <div className='informationCard'>
-            <h1 style={{ fontFamily: 'Grange', fontWeight: 600, fontSize: '30px', lineHeight: '26.4px', textAlign: 'center' }}>
+        <div className={style.informationCard}>
+            <Title style={{ fontSize: '30px', lineHeight: '26.4px', color: '#1C2635', paddingBottom: '15px' }}>
                 {title}
-            </h1>
-            <div>
-                <p style={{ fontFamily: 'Proxima Nova', fontSize: '19px', lineHeight: '24px', fontWeight: 400 }}>{text}</p>
-            </div>
+            </Title>
+            <Text className={style.informationText}> {text}</Text>
         </div>
     )
 }
